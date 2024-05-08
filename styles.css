@@ -14,12 +14,18 @@ body {
   max-width: 800px;
 }
 
-h1 {
+.heading-text {
   color: #333;
   text-align: center;
 }
 
-.transactions {
+.error-message {
+  margin-top: 5px;
+  color: red;
+  font-size: 12px;
+}
+
+.transactions-section {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
@@ -32,29 +38,29 @@ h1 {
   padding: 20px;
 }
 
-.transactions-column h2 {
+.transactions-heading {
   margin-top: 0;
   color: #333;
+  text-align: center;
 }
 
-ul {
+.transaction-list {
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
 
-.form-group {
+.form-section {
   margin-bottom: 15px;
 }
 
-label {
+.input-label {
   display: block;
   color: #333;
   font-weight: bold;
 }
 
-input {
-  transition: border-color 0.3s ease;
+.input-field {
   margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -62,31 +68,46 @@ input {
   width: calc(100% - 20px);
 }
 
-input:focus {
+.input-field:focus {
   border-color: #3498db;
 }
 
-button {
-  transition: background-color 0.3s ease;
+.submit-button,
+.edit-btn,
+.delete-btn {
   cursor: pointer;
   border: none;
   border-radius: 4px;
-  background-color: #3498db;
   padding: 10px 20px;
+  width: auto;
   color: white;
+}
+
+.submit-button {
+  background-color: #3498db;
+}
+
+.submit-button:hover {
+  background-color: #2980b9;
 }
 
 .edit-btn,
 .delete-btn {
-  margin-right: 10px;
+  background-color: #e74c3c;
 }
 
-.edit-btn:hover,
-.delete-btn:hover {
-  background-color: #2980b9;
+@media (hover: hover) {
+  .edit-btn:hover,
+  .delete-btn:hover {
+    background-color: #c0392b;
+  }
 }
 
-.balance {
+.spacer {
+  margin-top: 20px;
+}
+
+.balance-text {
   margin-top: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
@@ -96,8 +117,8 @@ button {
   text-align: center;
 }
 
-.spacer {
-  margin-top: 20px;
+.balance-text.expense {
+  background-color: #e74c3c;
 }
 
 .total {
@@ -110,9 +131,65 @@ button {
   text-align: center;
 }
 
-.transactions-column ul li::before {
-  margin-right: 10px;
-  content: "\2022";
-  color: #3498db;
-  font-size: 14px;
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.transaction-item .buttons-container {
+  display: flex;
+  align-items: center;
+}
+
+.transaction-item .buttons-container button {
+  margin-left: 5px;
+}
+
+.transaction-item .buttons-container button.edit-btn {
+  background-color: #3498db;
+}
+
+.transaction-item .buttons-container button.delete-btn {
+  background-color: #e74c3c;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.modal-content {
+  margin: 15% auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #888;
+  border-radius: 8px;
+  background-color: #fefefe;
+  padding: 20px;
+  width: 60%;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  color: #aaa;
+  font-weight: bold;
+  font-size: 28px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
 }

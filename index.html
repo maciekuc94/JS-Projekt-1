@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,44 +8,106 @@
   </head>
   <body>
     <div class="container">
-      <h1>Budżet Domowy</h1>
-      <div class="transactions">
+      <h1 class="heading-text">Budżet Domowy</h1>
+      <div class="transactions-section">
         <div class="transactions-column">
-          <h2>Przychody</h2>
-          <div class="form-group">
-            <label for="incomeDescription">Opis:</label>
-            <input type="text" id="incomeDescription" />
-          </div>
-          <div class="form-group">
-            <label for="incomeAmount">Kwota (PLN):</label>
-            <input type="number" id="incomeAmount" step="0.01" />
-          </div>
-          <button id="addIncomeBtn">Dodaj przychód</button>
-          <ul id="incomeList"></ul>
-          <div class="spacer"></div>
-          <div class="total">
-            <div id="incomeTotal"></div>
-          </div>
+          <h2 class="transactions-heading">Przychody</h2>
+          <form id="incomeForm">
+            <div class="form-section">
+              <label class="input-label" for="incomeDescription">Opis:</label>
+              <input
+                class="input-field"
+                type="text"
+                id="incomeDescription"
+                name="incomeDescription"
+                required />
+              <div class="error-message" id="incomeDescriptionError"></div>
+            </div>
+            <div class="form-section">
+              <label class="input-label" for="incomeAmount">Kwota (PLN):</label>
+              <input
+                class="input-field"
+                type="number"
+                id="incomeAmount"
+                name="incomeAmount"
+                step="0.01"
+                required />
+              <div class="error-message" id="incomeAmountError"></div>
+            </div>
+            <button class="submit-button" type="submit" id="addIncomeBtn">
+              Dodaj przychód
+            </button>
+            <ul class="transaction-list" id="incomeList"></ul>
+            <div class="spacer"></div>
+            <div class="total" id="incomeTotal"></div>
+          </form>
         </div>
         <div class="transactions-column">
-          <h2>Wydatki</h2>
-          <div class="form-group">
-            <label for="expenseDescription">Opis:</label>
-            <input type="text" id="expenseDescription" />
-          </div>
-          <div class="form-group">
-            <label for="expenseAmount">Kwota (PLN):</label>
-            <input type="number" id="expenseAmount" step="0.01" />
-          </div>
-          <button id="addExpenseBtn">Dodaj wydatek</button>
-          <ul id="expenseList"></ul>
-          <div class="spacer"></div>
-          <div class="total">
-            <div id="expenseTotal"></div>
-          </div>
+          <h2 class="transactions-heading">Wydatki</h2>
+          <form id="expenseForm">
+            <div class="form-section">
+              <label class="input-label" for="expenseDescription">Opis:</label>
+              <input
+                class="input-field"
+                type="text"
+                id="expenseDescription"
+                name="expenseDescription"
+                required />
+              <div class="error-message" id="expenseDescriptionError"></div>
+            </div>
+            <div class="form-section">
+              <label class="input-label" for="expenseAmount"
+                >Kwota (PLN):</label
+              >
+              <input
+                class="input-field"
+                type="number"
+                id="expenseAmount"
+                name="expenseAmount"
+                step="0.01"
+                required />
+              <div class="error-message" id="expenseAmountError"></div>
+            </div>
+            <button class="submit-button" type="submit">Dodaj wydatek</button>
+            <ul class="transaction-list" id="expenseList"></ul>
+            <div class="spacer"></div>
+            <div class="total" id="expenseTotal"></div>
+          </form>
         </div>
       </div>
-      <div id="balance" class="balance">Bilans wynosi zero</div>
+      <div id="balance" class="balance-text">Bilans wynosi zero</div>
+    </div>
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Edytuj transakcję</h2>
+        <form id="editForm">
+          <div class="form-section">
+            <label class="input-label" for="editDescription">Opis:</label>
+            <input
+              class="input-field"
+              type="text"
+              id="editDescription"
+              name="editDescription"
+              required />
+            <div class="error-message" id="editDescriptionError"></div>
+          </div>
+          <div class="form-section">
+            <label class="input-label" for="editAmount">Kwota (PLN):</label>
+            <input
+              class="input-field"
+              type="number"
+              id="editAmount"
+              name="editAmount"
+              step="0.01"
+              required />
+            <div class="error-message" id="editAmountError"></div>
+          </div>
+          <button class="submit-button" type="button" id="editSaveBtn">
+            Zapisz zmiany
+          </button>
+        </form>
+      </div>
     </div>
 
     <script src="app.js"></script>
