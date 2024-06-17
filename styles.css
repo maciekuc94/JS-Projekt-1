@@ -87,10 +87,6 @@ body {
   background-color: #3498db;
 }
 
-.submit-button:hover {
-  background-color: #2980b9;
-}
-
 .edit-btn,
 .delete-btn {
   background-color: #e74c3c;
@@ -107,11 +103,10 @@ body {
   margin-top: 20px;
 }
 
-.balance-text {
+.balance-text-total {
   margin-top: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  background-color: #3498db;
   padding: 15px;
   color: white;
   text-align: center;
@@ -119,16 +114,6 @@ body {
 
 .balance-text.expense {
   background-color: #e74c3c;
-}
-
-.total {
-  margin-top: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  background-color: #2980b9;
-  padding: 15px;
-  color: white;
-  text-align: center;
 }
 
 .transaction-item {
@@ -188,7 +173,6 @@ body {
   font-size: 28px;
 }
 
-.close:hover,
 .close:focus {
   color: black;
   text-decoration: none;

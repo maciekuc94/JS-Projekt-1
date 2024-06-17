@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const incomeTotalDisplay = document.getElementById("incomeTotal");
   const expenseTotalDisplay = document.getElementById("expenseTotal");
 
-  let isEditing = false; // flag to indicate if editing is in progress
-  let editingIndex = null; // index of the item being edited
+  let isEditing = false;
+  let editingIndex = null;
 
   incomeForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -60,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const transaction = { description, amount: amountValue };
 
     if (isEditing !== false) {
-      // If editing, update the existing transaction instead of adding a new one
       if (type === "income") {
         incomeTransactions[editingIndex] = transaction;
         updateTransactionList(incomeList, incomeTransactions, "income");
@@ -71,7 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
         updateExpenseTotal();
       }
     } else {
-      // If not editing, add a new transaction
       if (type === "income") {
         incomeTransactions.push(transaction);
         updateTransactionList(incomeList, incomeTransactions, "income");
@@ -85,13 +83,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateBalance();
 
-    // Reset editing flag
     isEditing = false;
     editingIndex = null;
   }
 
   function updateTransactionList(list, transactions, type) {
-    list.innerHTML = ""; // clear the list before adding new items
+    list.innerHTML = "";
 
     transactions.forEach((transaction, index) => {
       const item = createTransactionItem(transaction, index, type);
@@ -125,7 +122,6 @@ document.addEventListener("DOMContentLoaded", function () {
     item.appendChild(buttonsContainer);
     item.appendChild(transactionInfo);
 
-    // Add event listeners for edit and delete buttons
     editBtn.addEventListener("click", () => handleEditClick(index, type));
     deleteBtn.addEventListener("click", () => handleDeleteClick(index, type));
 
@@ -137,20 +133,17 @@ document.addEventListener("DOMContentLoaded", function () {
       type === "income" ? incomeTransactions : expenseTransactions;
     const transactionToEdit = transactions[index];
 
-    // Set the editing flag and index
     isEditing = { type, index };
 
-    // Fill edit form fields with the data of the transaction being edited
     document.getElementById("editDescription").value =
       transactionToEdit.description;
     document.getElementById("editAmount").value = transactionToEdit.amount;
 
-    // Show the edit modal
     document.getElementById("editModal").style.display = "block";
   }
 
   document.getElementById("editSaveBtn").addEventListener("click", () => {
-    if (!isEditing) return; // If not editing, return
+    if (!isEditing) return;
 
     const { type, index } = isEditing;
     const transactions =
@@ -158,11 +151,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const newDescription = document.getElementById("editDescription").value;
     const newAmount = document.getElementById("editAmount").value;
 
-    // Update the transaction data
     transactions[index].description = newDescription;
     transactions[index].amount = parseFloat(newAmount);
 
-    // Update transaction list and totals
     updateTransactionList(
       type === "income" ? incomeList : expenseList,
       transactions,
@@ -175,10 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     updateBalance();
 
-    // Hide the edit modal
     document.getElementById("editModal").style.display = "none";
-
-    // Reset editing flag
     isEditing = false;
     editingIndex = null;
   });
@@ -186,9 +174,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function handleDeleteClick(index, type) {
     const transactions =
       type === "income" ? incomeTransactions : expenseTransactions;
-    transactions.splice(index, 1); // Remove the item from the array
+    transactions.splice(index, 1);
 
-    // Update transaction list and totals
     updateTransactionList(
       type === "income" ? incomeList : expenseList,
       transactions,
@@ -201,13 +188,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     updateBalance();
 
-    // Reset editing flag
     isEditing = false;
     editingIndex = null;
   }
 
   document.getElementById("editSaveBtn").addEventListener("click", () => {
-    if (!isEditing) return; // If not editing, return
+    if (!isEditing) return;
 
     const { type, index } = isEditing;
     const transactions =
@@ -215,11 +201,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const newDescription = document.getElementById("editDescription").value;
     const newAmount = document.getElementById("editAmount").value;
 
-    // Update the transaction data
     transactions[index].description = newDescription;
     transactions[index].amount = parseFloat(newAmount);
 
-    // Update transaction list and totals
     updateTransactionList(
       type === "income" ? incomeList : expenseList,
       transactions,
@@ -232,19 +216,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     updateBalance();
 
-    // Hide the edit modal
     document.getElementById("editModal").style.display = "none";
 
-    // Reset editing flag
     isEditing = false;
     editingIndex = null;
   });
 
   document.querySelector(".close").addEventListener("click", () => {
-    // Hide the edit modal
     document.getElementById("editModal").style.display = "none";
 
-    // Reset editing flag
     isEditing = false;
     editingIndex = null;
   });
